@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import BG from '../assets/Bacground.png'
 
 
@@ -93,9 +94,11 @@ export default function JoinSchoolCafe() {
               </div>
   
               {/* Submit Button */}
+              <Link to={"/verify"}>
               <button className="w-full  bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
                 Sign Up
               </button>
+              </Link>
             </form>
           </div>
         </div>

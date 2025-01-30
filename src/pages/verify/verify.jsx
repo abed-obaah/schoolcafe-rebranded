@@ -2,6 +2,7 @@ import { useState } from "react";
 import email from '../../assets/Subtract.png';
 import object from '../../assets/logos_whatsapp-icon.png';
 import checks from '../../assets/Objects.png';
+import { Link } from "react-router-dom";
 
 const VerificationSteps = () => {
   const [step, setStep] = useState(1);
@@ -159,9 +160,11 @@ const VerificationSteps = () => {
             <img src={checks} className=" h-6"/>
           </div>
         </div>
-        <button className="mt-6 w-full bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white font-semibold py-3 rounded-lg text-lg  hover:opacity-90 transition">
-          Complete your profile
-        </button>
+        <Link to={'/academic-profile[aspirant]'}>
+            <button className="mt-6 w-full bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white font-semibold py-3 rounded-lg text-lg  hover:opacity-90 transition">
+            Complete your profile
+            </button>
+        </Link>
           </>
         )}
       </div>

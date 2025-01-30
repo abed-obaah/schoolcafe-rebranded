@@ -100,7 +100,7 @@ export default function JoinSchoolCafe() {
               </div>
 
               <div className="text-sm/6">
-                <a href="#" className="font-semibold text-[#0076CA] hover:text-indigo-500 underline">
+                <a href="/reset-password" className="font-semibold text-[#0076CA] hover:text-indigo-500 underline">
                     Reset Password
                 </a>
               </div>
