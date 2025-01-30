@@ -10,6 +10,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Link } from 'react-router-dom'
 
 const solutions = [
   {
@@ -103,14 +104,17 @@ export default function Example() {
           </PopoverGroup>
           <div className="flex gap-4">
       {/* Log In Button */}
-      <button className="px-6 py-2 text-blue-600 border-2 border-b-4  border-[#0076Cc] border-b-[#0076CA] rounded-lg text-lg font-medium hover:bg-blue-50 transition">
-        Log In
-      </button>
-
+      <Link to={'/log-in'}>
+        <button className="px-6 py-2 text-blue-600 border-2 border-b-4  border-[#0076Cc] border-b-[#0076CA] rounded-lg text-lg font-medium hover:bg-blue-50 transition">
+          Log In
+        </button>
+      </Link>
       {/* Sign Up Button */}
-      <button className="px-6 py-2 text-white bg-blue-600 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
-        Sign Up
-      </button>
+      <Link to={'/create-account'}>
+        <button className="px-6 py-2 text-white bg-blue-600 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
+          Sign Up
+        </button>
+      </Link>
     </div>
         </div>
       </div>
