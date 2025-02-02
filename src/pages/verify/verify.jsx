@@ -3,6 +3,7 @@ import email from '../../assets/Subtract.png';
 import object from '../../assets/logos_whatsapp-icon.png';
 import checks from '../../assets/Objects.png';
 import { Link } from "react-router-dom";
+import { Whatsapp } from 'iconsax-react';
 
 const VerificationSteps = () => {
   const [step, setStep] = useState(1);
@@ -132,9 +133,11 @@ const VerificationSteps = () => {
             >
              Verify
             </button>
-            <p className="mt-4 ">
-              <a href="#" className="text-blue-500">Open WhatsApp</a>
+            <p className="mt-4 flex items-center justify-center gap-2">
+              <Whatsapp size="32" color="#34C759" />
+              <a href="#" className="text-[#34C759] font-medium">Open WhatsApp</a>
             </p>
+
           </>
         )}
 

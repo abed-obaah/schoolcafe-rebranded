@@ -1,10 +1,19 @@
 import { Link } from 'react-router-dom';
 import BG from '../assets/Bacground.png'
+import { useState } from "react";
 
 
 
+const options = [
+  { value: "Social Media", label: "Social Media Handle" },
+  { value: "Friends", label: "Friend’s Username" },
+  { value: "Campus Event", label: "Event Name" },
+  { value: "Other", label: "Specify Source" },
+];
 
 export default function JoinSchoolCafe() {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [inputValue, setInputValue] = useState("");
     return (
       <div className="flex  bg-gray-100 justify-center mt-10">
         {/* Left Section: Image */}
@@ -74,28 +83,44 @@ export default function JoinSchoolCafe() {
               </div>
   
               <div>
-                <label className="text-gray-700 block mb-1">How did you hear about us?</label>
-                <select className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                  <option>Social Media</option>
-                  <option>Friends</option>
-                  <option>Campus Event</option>
-                  <option>Other</option>
-                </select>
-              </div>
-  
-              <div>
-                <label className="text-gray-700 block mb-1">How did you hear about us?</label>
-                <select className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                  <option>Social Media</option>
-                  <option>Friends</option>
-                  <option>Campus Event</option>
-                  <option>Other</option>
-                </select>
-              </div>
+      <label className="text-gray-700 block mb-2 text-sm font-medium ">
+        How did you hear about us?
+      </label>
+      <div className="grid grid-cols-2 gap-3">
+        {options.map((option) => (
+          <div
+            key={option.value}
+            onClick={() => {
+              setSelectedOption(option);
+              setInputValue(""); // Reset input when a new option is selected
+            }}
+            className={`w-full px-4 py-3 text-sm font-medium border rounded-lg cursor-pointer transition ${
+              selectedOption?.value === option.value
+                ? "bg-[#0076CA] text-white border-[#0076CA]" // Active state
+                : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100" // Default state
+            }`}
+          >
+            {option.value}
+          </div>
+        ))}
+      </div>
+    </div>
+    {selectedOption && (
+        <div className="mt-4 mb-4 ">
+          <label className="text-gray-700 block mb-1">{selectedOption.label}</label>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+            placeholder={`Enter ${selectedOption.label}`}
+          />
+        </div>
+      )}
   
               {/* Submit Button */}
               <Link to={"/verify"}>
-              <button className="w-full  bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
+              <button className="w-full mt-4  bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
                 Sign Up
               </button>
               </Link>

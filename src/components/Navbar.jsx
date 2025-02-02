@@ -111,7 +111,7 @@ export default function Example() {
       </Link>
       {/* Sign Up Button */}
       <Link to={'/create-account'}>
-        <button className="px-6 py-2 text-white bg-blue-600 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
+        <button className="px-6 py-2.5 text-white bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] rounded-lg text-lg font-medium hover:bg-blue-700 transition">
           Sign Up
         </button>
       </Link>
