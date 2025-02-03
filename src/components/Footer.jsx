@@ -1,5 +1,6 @@
 import google from "../assets/Google.png"
 import app from "../assets/app.png"
+import logo from "../assets/logomain.png"
 
 
 const navigation = {
@@ -205,9 +206,20 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <p className="mt-8 text-sm/6 text-gray-400 md:order-1 md:mt-0">
+
+          <div className="flex items-center space-x-10">
+          <img
+                        alt=""
+                        src={logo}
+                        className="h-8 w-auto sm:h-10"
+                      />
+                       <p className="mt-8 text-sm/6 text-gray-400 md:order-1 md:mt-0 ">
+            
             &copy; 2024 Your Company, Inc. All rights reserved.
           </p>
+          </div>
+          
+         
         </div>
       </div>
     </footer>

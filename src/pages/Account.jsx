@@ -94,9 +94,9 @@ export default function JoinSchoolCafe() {
               setSelectedOption(option);
               setInputValue(""); // Reset input when a new option is selected
             }}
-            className={`w-full px-4 py-3 text-sm font-medium border rounded-lg cursor-pointer transition ${
+            className={`w-full text-center px-4 py-6 text-sm font-medium border rounded-lg cursor-pointer transition ${
               selectedOption?.value === option.value
-                ? "bg-[#0076CA] text-white border-[#0076CA]" // Active state
+                ? "bg-blue-300 text-white border-[#0076CA]" // Active state
                 : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100" // Default state
             }`}
           >

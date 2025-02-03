@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
+import logo from "../assets/logomain.png"
 
 const solutions = [
   {
@@ -65,7 +66,7 @@ export default function Example() {
             <span className="sr-only">Your Company</span>
             <img
               alt=""
-              src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+              src={logo}
               className="h-8 w-auto sm:h-10"
             />
           </a>
