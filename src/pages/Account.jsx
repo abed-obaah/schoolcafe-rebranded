@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import BG from '../assets/Bacground.png'
 import { useState } from "react";
-
+import { useRegister } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom'; 
 
 
 const options = [
@@ -14,6 +15,45 @@ const options = [
 export default function JoinSchoolCafe() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirm_password: "",
+    hear_about: "",
+    username: "",
+  });
+
+  const mutation = useRegister();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    const formDataToSend = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
+    });
+  
+    mutation.mutate(formDataToSend, {
+      onSuccess: (data) => {
+        navigate('/verify', { state: { email: formData.email } });
+      },
+      onError: (error) => {
+        alert(error.response?.data?.message || 'Something went wrong');
+      },
+    });
+  };
+  
+
+
+
     return (
       <div className="flex  bg-gray-100 justify-center mt-10">
         {/* Left Section: Image */}
@@ -36,13 +76,25 @@ export default function JoinSchoolCafe() {
             </p>
   
             {/* Form Fields */}
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label className="text-gray-700 block mb-1">Full Name</label>
+                <label className="text-gray-700 block mb-1">First Name</label>
                 <input
                   type="text"
+                  name="first_name"
                   className="w-full px-3 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                   placeholder="Enter your full name"
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label className="text-gray-700 block mb-1">last Name</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  className="w-full px-3 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                  placeholder="Enter your last name"
+                  onChange={handleChange}
                 />
               </div>
   
@@ -50,6 +102,7 @@ export default function JoinSchoolCafe() {
                 <label className="text-gray-700 block mb-1">Email Address</label>
                 <input
                   type="email"
+                   name="email"
                   className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   defaultValue="Strongestavenger@example.com"
                 />
@@ -59,6 +112,7 @@ export default function JoinSchoolCafe() {
                 <label className="text-gray-700 block mb-1">Phone Number</label>
                 <input
                   type="tel"
+                  name="phone"
                   className="w-full px-3  py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   placeholder="Enter your phone number"
                 />
@@ -68,6 +122,7 @@ export default function JoinSchoolCafe() {
                 <label className="text-gray-700 block mb-1">Password</label>
                 <input
                   type="password"
+                   name="password"
                   className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   placeholder="Create your password"
                 />
@@ -77,6 +132,7 @@ export default function JoinSchoolCafe() {
                 <label className="text-gray-700 block mb-1">Confirm Password</label>
                 <input
                   type="password"
+                  name="confirm_password"
                   className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   placeholder="Confirm your password"
                 />
@@ -111,6 +167,7 @@ export default function JoinSchoolCafe() {
           <input
             type="text"
             value={inputValue}
+            name="hear_about"
             onChange={(e) => setInputValue(e.target.value)}
             className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder={`Enter ${selectedOption.label}`}
@@ -119,11 +176,11 @@ export default function JoinSchoolCafe() {
       )}
   
               {/* Submit Button */}
-              <Link to={"/verify"}>
-              <button className="w-full mt-4  bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
+              {/* <Link to={"/verify"}> */}
+              <button type="submit" disabled={mutation.isLoading}  className="w-full mt-4  bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
                 Sign Up
               </button>
-              </Link>
+              {/* </Link> */}
             </form>
           </div>
         </div>
