@@ -1,11 +1,50 @@
 import BG from '../assets/Bacground.png'
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { useLogin } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function JoinSchoolCafe() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState("");
+
+
+  const { mutate: login, isLoading, error } = useLogin();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login({ email, password }, {
+      onSuccess: (data) => {
+        console.log("Login Successful:", data);
+        
+        // Save token if provided
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+        }
+        
+        navigate("/dashboard"); // Redirect after successful login
+      },
+    });
+  };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   login(
+  //     { email, password },
+  //     {
+  //       onSuccess: (data) => {
+  //         console.log("Login Successful:", data);
+  //         // Save token in localStorage or state management if needed
+  //         localStorage.setItem("token", data.token);
+  //         navigate("/dashboard"); // Redirect to dashboard after login
+  //       },
+  //     }
+  //   );
+  // };
     return (
       <div className="flex  bg-gray-100 justify-center mt-10">
         {/* Left Section: Image */}
@@ -28,14 +67,17 @@ export default function JoinSchoolCafe() {
             </p>
   
             {/* Form Fields */}
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleLogin}>
   
               <div>
                 <label className="text-gray-700 block mb-1">Email Address</label>
                 <input
                   type="email"
                   className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                  defaultValue="Strongestavenger@example.com"
+                  // defaultValue="Strongestavenger@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
   
@@ -46,6 +88,9 @@ export default function JoinSchoolCafe() {
                     type={showPassword ? "text" : "password"}
                     className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none pr-10"
                     placeholder="Create your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                   <button
                     type="button"
@@ -109,9 +154,15 @@ export default function JoinSchoolCafe() {
             
   
               {/* Submit Button */}
-              <button className="w-full bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition">
-                Log In
-              </button>
+              <button 
+  className={`w-full bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition ${isLoading ? "opacity-100" : ""}`} 
+  disabled={isLoading} 
+  type="submit"
+>
+  {isLoading ? "Logging in..." : "Log In"}
+</button>
+
+{error && <p className="text-red-500">{error.message}</p>}
             </form>
             <p className="text-center text-sm/6 text-gray-500 mt-5">
             Don’t have an account?{' '}
