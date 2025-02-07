@@ -15,21 +15,29 @@ export default function JoinSchoolCafe() {
 
   const { mutate: login, isLoading, error } = useLogin();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    login({ email, password }, {
-      onSuccess: (data) => {
-        console.log("Login Successful:", data);
-        
-        // Save token if provided
-        if (data.token) {
-          localStorage.setItem("token", data.token);
+    try {
+      login(
+        { email, password },
+        {
+          onSuccess: (data) => {
+            console.log("Login Successful:", data);
+
+
+            if (data.token) {
+              localStorage.setItem("token", data.token);
+            }
+
+            navigate("/dashboard");
+          },
         }
-        
-        navigate("/dashboard"); // Redirect after successful login
-      },
-    });
+      );
+    } catch (err) {
+      console.error("Login Error:", err);
+    }
   };
+  
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
