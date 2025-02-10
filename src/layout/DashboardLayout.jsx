@@ -1,14 +1,15 @@
 import React from "react";
+import Sidebar from "../components/SideBar";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar"; // Optional if dashboard has a navbar
+import '../App.css'
 
 const DashboardLayout = () => {
   return (
-    <div>
-      <Navbar />
-      <main>
-        <Outlet /> {/* This will render the Dashboard pages */}
-      </main>
+    <div style={{ display: "flex", }}>
+      <Sidebar />
+      <div style={{ flexGrow: 1, padding: "20px" }}>
+        <Outlet /> {/* This will render nested routes */}
+      </div>
     </div>
   );
 };

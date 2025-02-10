@@ -4,7 +4,10 @@ import object from '../../assets/logos_whatsapp-icon.png';
 import checks from '../../assets/Objects.png';
 import { Link } from "react-router-dom";
 import { Whatsapp } from 'iconsax-react';
+import { useVerifyEmail } from "../hooks/useAuthHooks";
 
+
+const { mutate: verifyEmail, isLoading, error } = useVerifyEmail();
 const VerificationSteps = () => {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -33,13 +36,23 @@ const VerificationSteps = () => {
     }
   };
 
-  const handleVerifyEmail = () => {
-    if (isEmailOtpComplete) setStep(2);
-  };
+  // const handleVerifyEmail = () => {
+  //   if (isEmailOtpComplete) setStep(2);
+  // };
 
   const handleVerifyWhatsApp = () => {
     if (isWhatsappOtpComplete) setStep(3);
   };
+
+
+  const handleVerifyEmail = () => {
+    if (isEmailOtpComplete) {
+      verifyEmail(otp.join(""), {
+        onSuccess: () => setStep(2), // Move to the next step on success
+      });
+    }
+  };
+
 
   return (
     <div className="flex justify-center items-center bg-gray-100">
@@ -86,14 +99,14 @@ const VerificationSteps = () => {
             </div>
 
             <button
-              onClick={handleVerifyEmail}
-              disabled={!isEmailOtpComplete}
-              className={`mt-6 w-full py-3 px-[180px] rounded-lg text-lg text-white ${
-                isEmailOtpComplete ? "bg-gradient-to-b from-[#27BAF3] to-[#0C56A5]" : "bg-gray-300 cursor-not-allowed"
-              }`}
-            >
-              Verify
-            </button>
+                  onClick={handleVerifyEmail}
+                  disabled={!isEmailOtpComplete || isLoading}
+                  className={`mt-6 w-full py-3 px-[180px] rounded-lg text-lg text-white ${
+                    isEmailOtpComplete ? "bg-gradient-to-b from-[#27BAF3] to-[#0C56A5]" : "bg-gray-300 cursor-not-allowed"
+                  }`}
+                >
+                  {isLoading ? "Verifying..." : "Verify"}
+              </button>
 
             <p className="mt-4 text-gray-600">
               Didn't receive the code? <a href="#" className="text-blue-500">Resend Code</a>

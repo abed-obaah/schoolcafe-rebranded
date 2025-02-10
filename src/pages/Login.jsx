@@ -1,7 +1,7 @@
 import BG from '../assets/Bacground.png'
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { useLogin } from "../hooks/useAuth";
+import { useLogin, useAuthCheck  } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,32 +11,47 @@ export default function JoinSchoolCafe() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
+  
 
 
   const { mutate: login, isLoading, error } = useLogin();
+  const { mutate: authCheck } = useAuthCheck();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+  
     try {
-      login(
+      await login(
         { email, password },
         {
           onSuccess: (data) => {
             console.log("Login Successful:", data);
-
-
+  
             if (data.token) {
               localStorage.setItem("token", data.token);
+  
+              // Call the authentication API with the token
+              authCheck(data.token, {
+                onSuccess: (authData) => {
+                  console.log("Auth Check Successful:", authData);
+                  navigate("/dashboard"); // Redirect after successful auth check
+                },
+                onError: (authError) => {
+                  console.error("Auth Check Failed:", authError.response?.data || authError.message);
+                },
+              });
             }
-
-            navigate("/dashboard");
+          },
+          onError: (error) => {
+            console.error("Login Failed:", error.response?.data || error.message);
           },
         }
       );
     } catch (err) {
-      console.error("Login Error:", err);
+      console.error("Unexpected Error:", err.message);
     }
   };
+  
   
 
   // const handleSubmit = (e) => {

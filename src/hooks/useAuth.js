@@ -25,10 +25,44 @@ export const useLogin = () => {
     },
     onSuccess: (data) => {
       console.log("Login Successful:", data);
-      // You can store the token in AsyncStorage or Redux here if needed
+     
     },
     onError: (error) => {
       console.error("Login Failed:", error.response?.data || error.message);
+    },
+  });
+};
+
+export const useAuthCheck = () => {
+  return useMutation({
+    mutationFn: async (token) => {
+      const { data } = await API.get("/users/authenticate", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    },
+    onSuccess: (data) => {
+      console.log("User Authenticated:", data);
+    },
+    onError: (error) => {
+      console.error("Auth Check Failed:", error.response?.data || error.message);
+    },
+  });
+};
+
+export const useVerifyEmail = () => {
+  return useMutation({
+    mutationFn: async (email_otp) => {
+      const { data } = await API.post("/users/verify", { email_otp });
+      return data;
+    },
+    onSuccess: (data) => {
+      console.log("Email Verification Successful:", data);
+    },
+    onError: (error) => {
+      console.error("Email Verification Failed:", error.response?.data || error.message);
     },
   });
 };
