@@ -5,43 +5,43 @@ import logo from "../assets/logomain.png"
 
 const navigation = {
   solutions: [
-    { name: 'School Fees Checker', href: '#' },
-    { name: 'CGPA Calculator', href: '#' },
-    { name: 'Aggregate Score Calculator', href: '#' },
-    { name: 'Admission Eligibility Checker', href: '#' },
-    { name: 'Subject Combination Checker', href: '#' },
-    { name: 'Course Recommendation Tool', href: '#' },
-    { name: 'Course Eligibility Checker', href: '#' },
+    { name: 'School Fees Checker', href: '/comingSoon' },
+    { name: 'CGPA Calculator', href: '/comingSoon' },
+    { name: 'Aggregate Score Calculator', href: '/comingSoon' },
+    { name: 'Admission Eligibility Checker', href: '/comingSoon' },
+    { name: 'Subject Combination Checker', href: '/comingSoon' },
+    { name: 'Course Recommendation Tool', href: '/comingSoon' },
+    { name: 'Course Eligibility Checker', href: '/comingSoon' },
   ],
   support: [
-    { name: 'FAQs', href: '#' },
-    { name: 'Compare Schools', href: '#' },
-    { name: 'Expert Advice', href: '#' },
-    { name: 'Glossary', href: '#' },
-    { name: 'Career Paths', href: '#' },
-    { name: 'Scholarships', href: '#' },
-    { name: 'Study Abroad', href: '#' },
+    { name: 'FAQs', href: '/comingSoon' },
+    { name: 'Compare Schools', href: '/comingSoon' },
+    { name: 'Expert Advice', href: '/comingSoon' },
+    { name: 'Glossary', href: '/comingSoon' },
+    { name: 'Career Paths', href: '/comingSoon' },
+    { name: 'Scholarships', href: '/comingSoon' },
+    { name: 'Study Abroad', href: '/comingSoon' },
   ],
   company: [
-    { name: 'List Your School', href: '#' },
-    { name: 'Our Partners', href: '#' },
-    { name: 'Giving Back', href: '#' },
-    { name: 'Meet Our Team', href: '#' },
-    { name: 'Events', href: '#' },
-    { name: 'Free Tools', href: '#' },
-    { name: 'Marketplace', href: '#' },
+    { name: 'List Your School', href: '/comingSoon' },
+    { name: 'Our Partners', href: '/comingSoon' },
+    { name: 'Giving Back', href: '/comingSoon' },
+    { name: 'Meet Our Team', href: '/comingSoon' },
+    { name: 'Events', href: '/comingSoon' },
+    { name: 'Free Tools', href: '/comingSoon' },
+    { name: 'Marketplace', href: '/comingSoon' },
   ],
   legal: [
-    { name: 'About Us', href: '#' },
-    { name: 'Contact Us', href: '#' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact Us', href: '/contact' },
     { name: 'Press Release', href: '#' },
-    { name: 'Advert Placement', href: '#' },
+    { name: 'Advert Placement', href: 'https://schoolcafe.ng/blog/advertise/' },
     { name: 'Site Map', href: '#' },
   ],
   social: [
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com/schoolcafe.ng/',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -54,7 +54,7 @@ const navigation = {
     },
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/schoolcafe.ng/',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -67,7 +67,7 @@ const navigation = {
     },
     {
       name: 'X',
-      href: '#',
+      href: 'https://x.com/SchoolCafeNg',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
@@ -75,8 +75,8 @@ const navigation = {
       ),
     },
     {
-      name: 'GitHub',
-      href: '#',
+      name: 'LinkedIn',
+      href: 'https://www.linkedin.com/company/schoolcafeng',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -89,7 +89,7 @@ const navigation = {
     },
     {
       name: 'YouTube',
-      href: '#',
+      href: 'https://www.youtube.com/channel/UC7PVUxasNCk0bz4ReYTdw4g',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path

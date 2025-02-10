@@ -11,6 +11,10 @@ import Verify from "./pages/verify/verify";
 import Reset from "./pages/reset/reset";
 import Academic from "./pages/profile/academicProfile";
 import Dashboard from "./pages/Dashboard";
+import ComingSoonPage from "./components/ComingSoonPage";
+import FeatureSchool from './pages/featuredSchoolPage'
+import SchoolCompare from './pages/compareSchools'
+import Schools from './pages/schools';
 
 const App = () => {
   return (
@@ -18,7 +22,7 @@ const App = () => {
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicLayout />}>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/create-account" element={<Account />} />
@@ -26,6 +30,10 @@ const App = () => {
           <Route path="/verify" element={<Verify />} />
           <Route path="/reset-password" element={<Reset />} />
           <Route path="/academic-profile[aspirant]" element={<Academic />} />
+          <Route path="/comingSoon" element={<ComingSoonPage />} />
+          <Route path="/feature-school" element={<FeatureSchool />} />
+          <Route path="/school-compare" element={<SchoolCompare />} />
+          <Route path="/school[id]" element={<Schools />} />
         </Route>
 
         {/* Dashboard Routes */}

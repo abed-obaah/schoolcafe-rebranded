@@ -21,15 +21,15 @@ export default function JoinSchoolCafe() {
     e.preventDefault();
   
     try {
-      await login(
+      login(
         { email, password },
         {
           onSuccess: (data) => {
             console.log("Login Successful:", data);
-  
+
             if (data.token) {
               localStorage.setItem("token", data.token);
-  
+
               // Call the authentication API with the token
               authCheck(data.token, {
                 onSuccess: (authData) => {
@@ -189,7 +189,7 @@ export default function JoinSchoolCafe() {
             </form>
             <p className="text-center text-sm/6 text-gray-500 mt-5">
             Don’t have an account?{' '}
-            <a href="#" className="font-semibold text-[#0076CA] hover:text-indigo-500">
+            <a href="/create-account" className="font-semibold text-[#0076CA] hover:text-indigo-500">
              Create an account
             </a>
           </p>

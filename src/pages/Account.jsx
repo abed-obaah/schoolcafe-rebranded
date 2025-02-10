@@ -100,7 +100,6 @@ export default function JoinSchoolCafe() {
                 type='email'
                 name='email'
                 className='w-full px-3 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
-                defaultValue='Strongestavenger@example.com'
                 onChange={handleChange}
               />
             </div>

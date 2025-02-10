@@ -4,14 +4,19 @@ import object from '../../assets/logos_whatsapp-icon.png';
 import checks from '../../assets/Objects.png';
 import { Link } from "react-router-dom";
 import { Whatsapp } from 'iconsax-react';
-import { useVerifyEmail } from "../hooks/useAuthHooks";
+import { useVerifyEmail } from "../../hooks/useAuth";
+import { useLocation } from "react-router-dom";
 
 
-const { mutate: verifyEmail, isLoading, error } = useVerifyEmail();
+
 const VerificationSteps = () => {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [whatsappotp, setWhatsappOtp] = useState(["", "", "", "", "", ""]);
+  const { mutate: verifyEmail, isLoading, error } = useVerifyEmail();
+
+  const location = useLocation();
+  const email = location.state?.email || "";
 
   const isEmailOtpComplete = otp.join("").length === 6;
   const isWhatsappOtpComplete = whatsappotp.join("").length === 6;
@@ -80,7 +85,7 @@ const VerificationSteps = () => {
           <>
             <h2 className="text-2xl font-semibold mt-6 text-left">Verify your Email Address</h2>
             <p className="text-gray-600 mt-2 text-left">
-              We've sent a verification code to St***er@example.com
+              We've sent a verification code to {email}
             </p>
 
             <h2 className="text-[12px] font-[500] mt-6 text-left">Enter Verification Code</h2>
