@@ -6,7 +6,9 @@ import { Bars3Icon, XMarkIcon, HomeIcon, } from '@heroicons/react/24/outline';
 import { FaSearch, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 // import Typical from 'react-typical';
-import TextLoop from "react-text-loop";
+// import TextLoop from "react-text-loop";
+// import Marquee from "react-fast-marquee";
+import { Typewriter } from 'react-simple-typewriter';
 import copper1 from "../assets/copper1.png"
 import copper2 from "../assets/copper2.png"
 import copper3 from "../assets/copper3.png"
@@ -85,23 +87,24 @@ export default function Example() {
           className="w-full pl-12 pr-12 p-4 border border-[#B3B3B3] rounded-md"
         />
         <span className="absolute top-1/2 left-12 transform -translate-y-1/2 text-gray-400 pointer-events-none">
-        <TextLoop>
-            steps={[
-              'Search for Student Info...',
-              2000,
-              'Search for University Info...',
-              2000,
-              'Search for JAMB Info...',
-              2000,
-              'Search for WAEC Info...',
-              2000,
-              'Search for NYSC Info...',
-              2000,
-            ]}
-            loop={Infinity}
-            wrapper="span"
-            </TextLoop>
-        </span>
+  <span>
+    <Typewriter
+      words={[
+        'Search for Student Info...',
+        'Search for University Info...',
+        'Search for JAMB Info...',
+        'Search for WAEC Info...',
+        'Search for NYSC Info...',
+      ]}
+      loop={Infinity}
+      cursor
+      cursorStyle="_"
+      typeSpeed={70}
+      deleteSpeed={50}
+      delaySpeed={2000}
+    />
+  </span>
+</span>
         <AiOutlineUser className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-500" />
         <FaSearch className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500" />
       </div>
