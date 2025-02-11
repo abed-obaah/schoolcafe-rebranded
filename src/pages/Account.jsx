@@ -15,6 +15,10 @@ export default function JoinSchoolCafe() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -34,6 +38,8 @@ export default function JoinSchoolCafe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true); 
+
 
     const formDataToSend = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
@@ -42,9 +48,11 @@ export default function JoinSchoolCafe() {
 
     mutation.mutate(formDataToSend, {
       onSuccess: (data) => {
+        setIsSubmitting(false);
         navigate("/verify", { state: { email: formData.email } });
       },
       onError: (error) => {
+        setIsSubmitting(false);
         alert(error.response?.data?.message || "Something went wrong");
       },
     });
@@ -181,12 +189,13 @@ export default function JoinSchoolCafe() {
             {/* Submit Button */}
             {/* <Link to={"/verify"}> */}
             <button
-              type='submit'
-              disabled={mutation.isLoading}
-              className='w-full mt-4  bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition'
-            >
-              Sign Up
-            </button>
+  type='submit'
+  disabled={isSubmitting}
+  className='w-full mt-4 bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition'
+>
+  {isSubmitting ? "Loading..." : "Sign Up"}
+</button>
+
             {/* </Link> */}
           </form>
         </div>
