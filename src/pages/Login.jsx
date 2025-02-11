@@ -17,7 +17,7 @@ export default function JoinSchoolCafe() {
   const { mutate: login, isLoading, error } = useLogin();
   const { mutate: authCheck } = useAuthCheck();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
   
     try {

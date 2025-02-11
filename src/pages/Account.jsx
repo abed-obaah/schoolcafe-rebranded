@@ -188,13 +188,13 @@ export default function JoinSchoolCafe() {
 
             {/* Submit Button */}
             {/* <Link to={"/verify"}> */}
-            <button
-  type='submit'
-  disabled={isSubmitting}
-  className='w-full mt-4 bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition'
->
-  {isSubmitting ? "Loading..." : "Sign Up"}
-</button>
+              <button
+                type='submit'
+                disabled={isSubmitting}
+                className='w-full mt-4 bg-gradient-to-b from-[#27BAF3] to-[#0C56A5] text-white py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition'
+              >
+                {isSubmitting ? "Loading..." : "Sign Up"}
+              </button>
 
             {/* </Link> */}
           </form>
