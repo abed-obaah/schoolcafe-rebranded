@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Whatsapp } from 'iconsax-react';
 import { useVerifyEmail } from "../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
@@ -20,6 +21,7 @@ const VerificationSteps = () => {
 
   const isEmailOtpComplete = otp.join("").length === 6;
   const isWhatsappOtpComplete = whatsappotp.join("").length === 6;
+  const token = useSelector((state) => state.user.token);
 
   const handleChange = (index, value, otpType) => {
     if (/^\d?$/.test(value)) {
@@ -52,15 +54,25 @@ const VerificationSteps = () => {
 
   const handleVerifyEmail = () => {
     if (isEmailOtpComplete) {
-      verifyEmail(otp.join(""), {
-        onSuccess: () => setStep(2), // Move to the next step on success
-      });
+      const emailOtp = otp.join(""); 
+      console.log("Email OTP being sent:", emailOtp);
+  
+      verifyEmail(
+        { email_otp: emailOtp },
+        {
+          onSuccess: () => setStep(2), 
+          onError: (error) => console.error("Verification Error:", error), 
+        }
+      );
     }
   };
+  
+  
 
 
   return (
     <div className="flex justify-center items-center bg-gray-100">
+      {/* <p>token: {token ? token : "No token available"}</p> */}
       <div className="bg-white p-10 rounded-2xl w-full  max-w-2xl text-center mt-[10%]">
         {/* Progress Bar */}
         <div className="flex justify-center items-center mb-8">
@@ -105,6 +117,7 @@ const VerificationSteps = () => {
 
             <button
                   onClick={handleVerifyEmail}
+                  
                   disabled={!isEmailOtpComplete || isLoading}
                   className={`mt-6 w-full py-3 px-[180px] rounded-lg text-lg text-white ${
                     isEmailOtpComplete ? "bg-gradient-to-b from-[#27BAF3] to-[#0C56A5]" : "bg-gray-300 cursor-not-allowed"
@@ -143,14 +156,14 @@ const VerificationSteps = () => {
             </div>
 
             <button
-              onClick={handleVerifyWhatsApp}
-              disabled={!isWhatsappOtpComplete}
-              className={`mt-6 w-full py-3 px-[180px] rounded-lg text-lg text-white ${
-                isWhatsappOtpComplete ? "bg-gradient-to-b from-[#27BAF3] to-[#0C56A5]" : "bg-gray-300 cursor-not-allowed"
-              }`}
-            >
-             Verify
-            </button>
+                onClick={handleVerifyWhatsApp}
+                disabled={!isWhatsappOtpComplete || isLoading}
+                className={`mt-6 w-full py-3 px-[180px] rounded-lg text-lg text-white ${
+                  isWhatsappOtpComplete ? "bg-gradient-to-b from-[#27BAF3] to-[#0C56A5]" : "bg-gray-300 cursor-not-allowed"
+                }`}
+              >
+                {isLoading ? "Verifying..." : "Verify"}
+              </button>
             <p className="mt-4 flex items-center justify-center gap-2">
               <Whatsapp size="32" color="#34C759" />
               <a href="#" className="text-[#34C759] font-medium">Open WhatsApp</a>

@@ -5,8 +5,8 @@ import '../App.css'
 
 const DashboardLayout = () => {
   return (
-    <div style={{ display: "flex", }}>
-      <Sidebar />
+    <div >
+      {/* <Sidebar /> */}
       <div style={{ flexGrow: 1, padding: "20px" }}>
         <Outlet /> {/* This will render nested routes */}
       </div>
