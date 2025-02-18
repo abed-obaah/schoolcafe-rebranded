@@ -3,7 +3,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import Versus from '../assets/versus.svg';
 import Share from '../assets/alt.svg';
-import Compare from '../Pages/topComparision';
+import Compare from '../pages/topComparision';
 
 const navigation = [
   { name: 'Product', href: '#' },
