@@ -185,7 +185,7 @@ export default function JoinSchoolCafe() {
             {isLoading ? "Logging in..." : "Log In"}
           </button>
 
-{error && <p className="text-red-500">{error.message}</p>}
+          {error && <p className="text-red-500">{error.message}</p>}
             </form>
             <p className="text-center text-sm/6 text-gray-500 mt-5">
             Don’t have an account?{' '}

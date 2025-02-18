@@ -3,6 +3,7 @@ import API from "../api/api";
 import { useDispatch } from "react-redux";
 import { setUser } from "./userSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 
 export const useRegister = () => {
@@ -24,6 +25,7 @@ export const useRegister = () => {
 
 
 export const useLogin = () => {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: async ({ email, password }) => {
       const { data } = await API.post("/users/login", { email, password });
@@ -31,10 +33,11 @@ export const useLogin = () => {
     },
     onSuccess: (data) => {
       console.log("Login Successful:", data);
-     
+      navigate('/dashboard');
     },
     onError: (error) => {
       console.error("Login Failed:", error.response?.data || error.message);
+      navigate('/dashboard');
     },
   });
 };
