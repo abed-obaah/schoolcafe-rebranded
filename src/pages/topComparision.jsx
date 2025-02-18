@@ -1,5 +1,5 @@
 import React from "react";
-import Rec from '../assets/communityRec.svg';
+import Rec from '../assets/communityrec.svg';
 import {ArrowRight} from 'iconsax-react'
 import Aro from '../assets/arow.svg'
 
